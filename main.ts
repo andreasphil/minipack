@@ -11,6 +11,24 @@ import { consola } from "npm:consola@3.2.3";
  * Utils                                              *
  * -------------------------------------------------- */
 
+const log = {
+  info: (...params: any) => {
+    console.info("%cℹ%c", "color: blue", "color: initial", ...params);
+  },
+  log: (...params: any[]) => {
+    console.log(...params);
+  },
+  success: (...params: any[]) => {
+    console.info("%c✔︎%c", "color: green", "color: initial", ...params);
+  },
+  warn: (...params: any[]) => {
+    console.info("%c⚠%c", "color: yellow", "color: initial", ...params);
+  },
+  error: (...params: any[]) => {
+    console.info("%c✕%c", "color: red", "color: initial", ...params);
+  },
+};
+
 async function untar(path: string, cwd?: string, opts?: { flatten: boolean }) {
   const args = ["-xzf", path];
   if (cwd) args.push("-C", cwd);
@@ -136,7 +154,7 @@ export class Tar implements LoadableDependency {
       await globCopy(this.use, c.tempDir, c.outDir);
 
       spinner.stop();
-      consola.success(keyedName(this.name, this.key));
+      log.success(keyedName(this.name, this.key));
     } catch (e) {
       spinner.stop();
       throw e;
@@ -239,7 +257,7 @@ export default class Minipack {
 
   async pack() {
     if (!this.tasklist.length) {
-      consola.warn("No dependencies specified");
+      log.warn("No dependencies specified");
       return;
     }
 
@@ -249,7 +267,7 @@ export default class Minipack {
 
       for (const task of this.tasklist) {
         if (!this.needsDownload(task.name, task.key)) {
-          consola.info(
+          log.info(
             'Skipping "%s", key "%s" has already been downloaded',
             task.name,
             task.key,
@@ -262,7 +280,7 @@ export default class Minipack {
         await task.exec({ tempDir, outDir });
       }
     } catch (e) {
-      consola.error(e);
+      log.error(e);
     } finally {
       this.cleanup();
     }
@@ -284,7 +302,7 @@ export default class Minipack {
     this.opts.tempDir = tempDir;
 
     if (this.opts.reload) {
-      consola.info("Reloading all dependencies");
+      log.info("Reloading all dependencies");
       emptyDirSync(this.opts.outDir);
     } else {
       Deno.mkdirSync(this.opts.outDir, { recursive: true });
