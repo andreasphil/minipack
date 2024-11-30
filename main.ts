@@ -1,11 +1,14 @@
-import { Spinner } from "jsr:@std/cli@1.0.6/unstable-spinner";
-import { emptyDirSync, existsSync, expandGlob } from "jsr:@std/fs@1.0.5";
-import { dirname, join, resolve } from "jsr:@std/path@1.0.8";
+import { Spinner } from "https://esm.sh/jsr/@std/cli@1.0.6/unstable-spinner";
+import {
+  emptyDirSync,
+  existsSync,
+  expandGlob,
+} from "https://esm.sh/jsr/@std/fs@1.0.5";
+import { dirname, join, resolve } from "https://esm.sh/jsr/@std/path@1.0.8";
 import {
   compare as semverCompare,
   parse as semverParse,
-} from "jsr:@std/semver@1.0.3";
-import { consola } from "npm:consola@3.2.3";
+} from "https://esm.sh/jsr/@std/semver@1.0.3";
 
 /* -------------------------------------------------- *
  * Utils                                              *
