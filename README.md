@@ -14,7 +14,11 @@
 Minipack is a lightweight, extensible CLI tool designed to download, unpack, and
 manage dependencies from various sources like NPM, GitHub, and tarball URLs. It
 simplifies handling vendor dependencies by automating extraction, organization,
-and cleanup tasks. Minipack is meant for small, self-contained web apps that
+and cleanup tasks. It doesn't do anything complicated that you couldn't also do
+manually—it just makes it a bit more convenient.
+
+Minipack is meant for
+[small, self-contained web apps](https://github.com/andreasphil/unbuild) that
 work without bundling or other build processes.
 
 - ⛴️ Supports NPM, GitHub, and generic tarball URLs
@@ -33,10 +37,10 @@ describe your dependencies. This will produce a CLI tool which will manage those
 dependencies for you when run.
 
 To get started, create a minimal Minipack script in your app folder. The name
-doesn't matter, let's call this one `deps.ts`:
+doesn't matter, let's call it `deps.ts`:
 
 ```ts
-import Minipack from "https://raw.githubusercontent.com/andreasphil/minipack/refs/heads/main/main.ts";
+import Minipack from "https://esm.sh/gh/andreasphil/minipack#<tag>/main.ts?raw";
 
 const dependencies = new Minipack();
 
