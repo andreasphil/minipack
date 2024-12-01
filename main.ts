@@ -271,9 +271,7 @@ export default class Minipack {
       for (const task of this.tasklist) {
         if (!this.needsDownload(task.name, task.key)) {
           log.info(
-            'Skipping "%s", key "%s" has already been downloaded',
-            task.name,
-            task.key,
+            `Skipping ${task.name}, key ${task.key} has already been downloaded`,
           );
           continue;
         }
