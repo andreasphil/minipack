@@ -40,7 +40,7 @@ To get started, create a minimal Minipack script in your app folder. The name
 doesn't matter, let's call it `deps.ts`:
 
 ```ts
-import Minipack from "https://esm.sh/gh/andreasphil/minipack#<tag>/main.ts?raw";
+import Minipack from "https://esm.sh/gh/andreasphil/minipack@<tag>/main.ts?raw";
 
 const dependencies = new Minipack();
 
@@ -111,7 +111,7 @@ You can configure Minipack with the following options:
 - `tempDir: string`: For temporary files like downloads. Default: managed by
   your operating system
 - `reload: boolean`: If enabled, will download all dependencies even if they
-  already locally. Default: `false`
+  already exist locally. Default: `false`
 
 ### Permissions
 
