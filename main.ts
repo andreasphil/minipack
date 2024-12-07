@@ -247,8 +247,8 @@ export default class Minipack {
     Object.assign(this.opts, opts);
   }
 
-  add(dep: LoadableDependency) {
-    this.tasklist.push(dep);
+  add(...deps: LoadableDependency[]) {
+    this.tasklist.push(...deps);
     return this;
   }
 
