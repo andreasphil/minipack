@@ -9,19 +9,19 @@ import * as semver from "jsr:@std/semver@1.0.3";
  * -------------------------------------------------- */
 
 const log = {
-  info: (...params: any) => {
+  info: (...params: unknown[]) => {
     console.info("%cℹ%c", "color: blue", "color: initial", ...params);
   },
-  log: (...params: any[]) => {
+  log: (...params: unknown[]) => {
     console.log(...params);
   },
-  success: (...params: any[]) => {
+  success: (...params: unknown[]) => {
     console.info("%c✔︎%c", "color: green", "color: initial", ...params);
   },
-  warn: (...params: any[]) => {
+  warn: (...params: unknown[]) => {
     console.info("%c⚠%c", "color: yellow", "color: initial", ...params);
   },
-  error: (...params: any[]) => {
+  error: (...params: unknown[]) => {
     console.info("%c✕%c", "color: red", "color: initial", ...params);
   },
 };
