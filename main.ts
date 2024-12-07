@@ -210,7 +210,7 @@ export class Npm extends Tar {
     try {
       resolved = Npm.resolveIdentifier(opts.package);
     } catch (e) {
-      console.error(e);
+      log.error(e);
       throw e;
     }
 
