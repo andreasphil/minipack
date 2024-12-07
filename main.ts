@@ -193,7 +193,7 @@ export class Npm extends Tar {
 
     if (Array.isArray(info)) {
       resolved = info.sort((a, b) =>
-        semverCompare(semverParse(a.version), semverParse(b.version))
+        semver.compare(semver.parse(a.version), semver.parse(b.version))
       ).at(-1);
     } else resolved = info;
 
