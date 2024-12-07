@@ -244,7 +244,7 @@ export default class Minipack {
   };
 
   constructor(opts?: Partial<MinipackOpts>) {
-    Object.assign(this.opts, opts);
+    Object.assign(this.opts, opts, this.getOptsFromArgs());
   }
 
   add(...deps: LoadableDependency[]) {
@@ -279,6 +279,17 @@ export default class Minipack {
     } finally {
       this.cleanup();
     }
+  }
+
+  private getOptsFromArgs(): Partial<MinipackOpts> {
+    const result: Partial<MinipackOpts> = {};
+
+    const args = parseArgs(Deno.args);
+    Object.keys(this.opts).forEach((i) => {
+      if (args[i] !== undefined) result[i as keyof MinipackOpts] = args[i];
+    });
+
+    return result;
   }
 
   private verify() {

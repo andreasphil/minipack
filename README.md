@@ -113,6 +113,12 @@ You can configure Minipack with the following options:
 - `reload: boolean`: If enabled, will download all dependencies even if they
   already exist locally. Default: `false`
 
+These options can also be passed as CLI arguments:
+
+```sh
+deno run -A deps.ts --reload --tempDir="./vendor/.temp"
+```
+
 ### Permissions
 
 If you don't want to run Minipack with all permissions, you can run it with more
