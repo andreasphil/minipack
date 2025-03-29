@@ -12,7 +12,7 @@
 > definitely change.
 
 Minipack is a lightweight, extensible CLI tool designed to download, unpack, and
-manage dependencies from various sources like NPM, GitHub, and tarball URLs. It
+manage dependencies from various sources like npm, GitHub, and tarball URLs. It
 simplifies handling vendor dependencies by automating extraction, organization,
 and cleanup tasks. It doesn't do anything complicated that you couldn't also do
 manually—it just makes it a bit more convenient.
@@ -21,7 +21,7 @@ Minipack is meant for
 [small, self-contained web apps](https://github.com/andreasphil/unbuild) that
 work without bundling or other build processes.
 
-- ⛴️ Supports NPM, GitHub, and generic tarball URLs
+- ⛴️ Supports npm, GitHub, and generic tarball URLs
 - 📦 File extraction with configurable patterns
 - ✅ Simple but effective caching to avoid re-downloading existing dependencies
 - 👷 Extensible architecture for custom dependency handling
@@ -64,10 +64,10 @@ Downloads a repository at a specific tag from GitHub.
 dependencies.gitHub({ repo: "user/repo", tag: "v0.1.0" });
 ```
 
-### NPM packages
+### npm packages
 
-Resolves an NPM specifier to a specific package version, and downloads it from
-NPM. The package can be anything that you can `npm install`.
+Resolves an npm specifier to a specific package version, and downloads it from
+npm. The package can be anything that you can `npm install`.
 
 ```ts
 dependencies.npm({ package: "vue" });

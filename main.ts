@@ -194,7 +194,7 @@ export class Npm extends Tar {
     } else resolved = info;
 
     if (!resolved) {
-      throw new Error(`${identifier} did not resolve to an NPM package`);
+      throw new Error(`${identifier} did not resolve to an npm package`);
     }
 
     return resolved;
