@@ -4,9 +4,7 @@ import { emptyDirSync, existsSync, expandGlob } from "jsr:@std/fs@1.0.5";
 import { dirname, join, resolve } from "jsr:@std/path@1.0.8";
 import * as semver from "jsr:@std/semver@1.0.3";
 
-/* -------------------------------------------------- *
- * Utils                                              *
- * -------------------------------------------------- */
+// Utils --------------------------------------------------
 
 const log = {
   info: (...params: unknown[]) => {
@@ -72,9 +70,7 @@ function keyedName(name: string, key?: string): string {
   return key ? `${name}@${key}` : name;
 }
 
-/* -------------------------------------------------- *
- * Providers                                          *
- * -------------------------------------------------- */
+// Providers ----------------------------------------------
 
 export type LoadableDependencyContext = {
   tempDir: string;
@@ -198,7 +194,7 @@ export class Npm extends Tar {
     } else resolved = info;
 
     if (!resolved) {
-      throw new Error(`${identifier} did not resolve to an npm package`);
+      throw new Error(`${identifier} did not resolve to an NPM package`);
     }
 
     return resolved;
@@ -224,9 +220,7 @@ export class Npm extends Tar {
   }
 }
 
-/* -------------------------------------------------- *
- * Main                                               *
- * -------------------------------------------------- */
+// Main ---------------------------------------------------
 
 type MinipackOpts = {
   outDir: string;
@@ -250,6 +244,18 @@ export default class Minipack {
   add(...deps: LoadableDependency[]) {
     this.tasklist.push(...deps);
     return this;
+  }
+
+  tar(opts: TarOpts) {
+    return this.add(new Tar(opts));
+  }
+
+  gitHub(opts: GitHubOpts) {
+    return this.add(new GitHub(opts));
+  }
+
+  npm(opts: NpmOpts) {
+    return this.add(new Npm(opts));
   }
 
   async pack() {

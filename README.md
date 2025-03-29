@@ -61,7 +61,7 @@ deno run -A deps.ts
 Downloads a repository at a specific tag from GitHub.
 
 ```ts
-dependencies.add(new GitHub({ repo: "user/repo", tag: "v0.1.0" }));
+dependencies.gitHub({ repo: "user/repo", tag: "v0.1.0" });
 ```
 
 ### NPM packages
@@ -70,7 +70,7 @@ Resolves an NPM specifier to a specific package version, and downloads it from
 NPM. The package can be anything that you can `npm install`.
 
 ```ts
-dependencies.add(new Npm({ package: "vue" }));
+dependencies.npm({ package: "vue" });
 ```
 
 ### Generic tarballs
@@ -78,13 +78,11 @@ dependencies.add(new Npm({ package: "vue" }));
 Downloads and unpacks any tarball.
 
 ```ts
-dependencies.add(
-  new Tar({
-    name: "example",
-    url: "https://example.com/example.tar.gz",
-    key: "1.0",
-  }),
-);
+dependencies.tar({
+  name: "example",
+  url: "https://example.com/example.tar.gz",
+  key: "1.0",
+});
 ```
 
 ### Selecting files to keep
@@ -95,12 +93,10 @@ lets you provide a list of globs. Minipack will only vendor files that match one
 of those globs.
 
 ```ts
-dependencies.add(
-  new Npm({
-    package: "vue",
-    use: ["*LICENSE*", "dist/vue.esm-browser.*"],
-  }),
-);
+dependencies.npm({
+  package: "vue",
+  use: ["*LICENSE*", "dist/vue.esm-browser.*"],
+});
 ```
 
 ### Options
@@ -144,3 +140,9 @@ interface. This needs to provide the following:
 - `exec`: Will be called when `pack()` is called and should manage any
   downloading, copying, unpacking and similar required actions. Will receive a
   context as a parameter that includes temporary and output folder paths.
+
+Then, pass them to `Minipack.add`:
+
+```ts
+depdendencies.add(myLoadableDependency);
+```
