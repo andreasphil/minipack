@@ -1,15 +1,9 @@
 #!/bin/bash
 
-# TODO: Link to tag
-# TODO: Self-update
-
 # Strict mode ---------------------------------------------
 
-set -u            # no unset variables
-set -e            # exit immediately on error
-set -E            # inherit -e in functions
-set -o pipefail   # return value of pipeline is rightmost return
-IFS=$'\n\t'       # only allow tab and newline as separators
+set -ueEo pipefail
+IFS=$'\n\t'
 
 # Utilities -----------------------------------------------
 
@@ -40,14 +34,14 @@ _log() {
 #   _require <command>
 _require() {
   if ! type "$1" &>/dev/null; then
-    printf "\033[0;31m\033[1mERROR\033[0m required dependency %s is missing\n" $1
+    printf "\033[0;31m\033[1mERROR\033[0m required dependency %s is missing\n" "$1"
     exit 1
   fi
 }
 
 # Global configuration ------------------------------------
 
-version="v0.4.0"
+version="v0.5.0"
 download_url="https://github.com/andreasphil/minipack/archive/refs/tags/${version}.tar.gz"
 
 # Init ----------------------------------------------------
@@ -87,9 +81,9 @@ cat << EOF > "${deps_file}"
 source ${pack_dir}/pack
 
 # Add your dependencies here
-get_from_github andreasphil/minipack v0.4.0
+get_from_github andreasphil/minipack ${version}
 EOF
 
 chmod +x "${deps_file}"
 
-_log info "view and edit "${deps_file}" to get started, then run "./${deps_file}" to install."
+_log info "view and edit \"${deps_file}\" to get started, then run \"./${deps_file}\" to install."
